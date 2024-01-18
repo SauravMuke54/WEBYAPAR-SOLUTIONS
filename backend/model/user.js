@@ -5,11 +5,12 @@ const { v1: uuidv1 } = require("uuid");
 const Schema = mongoose.Schema; //creating schema class
 //creation of userschema
 const userSchema = new Schema(
-  {
+{
     username: {
       type: String,
       trim: true,
       required: true,
+      unique:true
     },
     encry_password: {
       type: String,
@@ -19,13 +20,23 @@ const userSchema = new Schema(
     salt: String,
     name:{
         type:String,
-        trim:true
+        trim:true,
+        default:""
     },
+    filename:{
+      type:String,
+      trim:true,
+      default:""
+  },
     role:{
         type:Number,
         default:0
 
-    }
+    },
+    photo_status:{
+      type:Number,
+    default:0    
+  }
   },
   { timestamps: true }
 );

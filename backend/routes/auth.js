@@ -18,10 +18,11 @@ router.post(
   ],
   signup
 );
+
 router.post(
   "/signin",
   [
-    check("username").isEmail().withMessage("Enter proper Username"),
+    check("username").isLength({ min: 3 }).withMessage("Enter proper Username"),
     check("password")
       .isLength({ min: 5 })
       .withMessage("Enter password with length greater than 5"),
