@@ -20,7 +20,9 @@ const storage = multer.diskStorage({
     cb(null, uploadFolder); // Specify the folder where uploaded files will be stored
   },
   filename: function (req, file, cb) {
-    // req.name_of_file= req.body._id+file.originalname
+    
+     req.file=file
+    
     console.log( req.body._id+file.originalname)
     cb(null, req.body._id+file.originalname); // Use _id as the filename
   },
@@ -37,12 +39,13 @@ mongoose.connect(DB).then(() => {
   app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use('*',cors());
 
 app.use('/api',userRoutes)
 
 app.use('/api',authRoutes)
-app.post("/api/photo/upload", upload.single("file"), uploadPhoto);
+
+app.post('/api/photo/upload', upload.single("image"), uploadPhoto);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

@@ -1,0 +1,29 @@
+/* Custom styles for the corner slide-in modal */
+.modal-dialog-corner-slide-in {
+  margin: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 350px; /* Default width for medium and larger screens */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Set different width for smaller screens (up to 576px) */
+@media (max-width: 576px) {
+  .modal-dialog-corner-slide-in {
+    width: 100%;
+  }
+}
+
+/* Set different width for medium and larger screens */
+@media (min-width: 577px) {
+  .modal-dialog-corner-slide-in {
+    width: 600px;
+  }
+}
+
+.modal.fade.show .modal-dialog-corner-slide-in {
+  transform: translateX(0);
+}

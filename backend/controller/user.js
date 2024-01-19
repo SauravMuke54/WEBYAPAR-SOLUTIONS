@@ -3,8 +3,7 @@ const User=require("../model/user")
 exports.uploadPhoto = (req, res) => {
     const id = req.body._id;
     const name=req.body.name
-    const filename=req.name_of_file
-    console.log("lube",filename)
+ const filename=req.file.filename
     
     User.findOneAndUpdate(
       { _id: id },
@@ -70,6 +69,27 @@ exports.deleteUser=(req,res)=>{
 
     }).catch((err)=>{
         return res.status(400).json({"error":err})
+    })
+
+}
+
+
+exports.getUser=(req,res)=>{
+
+    const userId=req.body._id;
+
+    User.findOne({_id:userId}).then(data=>{
+
+        if(!data){
+            return res.status(400).json({message:"User not found"})
+        }
+
+        return res.status(200).json({data:data})
+
+    }).catch(err=>{
+
+        return res.status(400).json({"error":err})
+
     })
 
 }

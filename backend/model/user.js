@@ -33,6 +33,7 @@ const userSchema = new Schema(
         default:0
 
     },
+  
     photo_status:{
       type:Number,
     default:0    
